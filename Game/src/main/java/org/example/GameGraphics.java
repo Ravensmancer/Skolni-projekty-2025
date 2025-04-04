@@ -18,14 +18,13 @@ public class GameGraphics extends JFrame {
         setSize(1024,768);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        // musí být dole v konstruktoru
         setVisible(true);
+        setFocusable(true);
 
     }
 
-    public void render(GameLogic logic) {
+    public void render(GameLogic logic, double deltaTime) {
         this.logic = logic;
-        // volá metodu paintComponent v Draw
         repaint();
     }
 
@@ -33,10 +32,16 @@ public class GameGraphics extends JFrame {
     private class Draw extends JPanel {
         @Override
         protected void paintComponent(Graphics g) {
-            g.drawImage(logic.ball.image, logic.ball.coord.x, logic.ball.coord.y, null);
+            super.paintComponent(g);
 
-            for (Enemy enemy: logic.enemies){
-                g.drawImage(enemy.image, enemy.coord.x, enemy.coord.y, null);
+            //Vykresleni Hrace
+            g.drawImage(logic.player.image, logic.player.coord.x - logic.player.image.getWidth(null) / 2,
+                    logic.player.coord.y - logic.player.image.getHeight(null) / 2, null);
+
+            //Vykresleni Enemy
+            for (Enemy enemy : logic.enemies) {
+                g.drawImage(enemy.image, enemy.coord.x - enemy.image.getWidth(null) / 2,
+                        enemy.coord.y - enemy.image.getHeight(null) / 2, null);
             }
         }
     }
