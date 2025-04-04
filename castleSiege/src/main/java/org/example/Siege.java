@@ -15,6 +15,7 @@ public class Siege {
         graphics.render(logic);
 
 
+
         graphics.addKeyListener(new KeyListener() {
 
             @Override
@@ -24,6 +25,7 @@ public class Siege {
 
             @Override
             public void keyPressed(KeyEvent e) {
+                //System.out.println(logic.knight.coord.x + " " + logic.knight.coord.y);
                 if (e.getKeyCode() == KeyEvent.VK_LEFT){
                     logic.knight.moveLeft();
                     graphics.render(logic);
@@ -50,7 +52,7 @@ public class Siege {
             }
         });
 
-        Timer timer = new Timer(1000, new ActionListener() {
+        Timer timer = new Timer(500, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 logic.update();
